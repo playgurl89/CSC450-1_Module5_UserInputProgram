@@ -1,0 +1,50 @@
+START
+
+    DECLARE userInput AS STRING
+    DECLARE fileContents AS STRING
+    DECLARE inputFile AS STRING
+    DECLARE outputFile AS STRING
+
+    SET inputFile = "CSC450_CT5_mod5.txt"
+    SET outputFile = "CSC450-mod5-reverse.txt"
+
+    OUTPUT "Enter information to append to the text file:"
+    INPUT userInput
+
+    OPEN inputFile IN APPEND MODE
+
+    IF inputFile OPENS SUCCESSFULLY THEN
+        WRITE newline AND userInput TO inputFile
+        CLOSE inputFile
+        OUTPUT "Data successfully appended to inputFile"
+    ELSE
+        OUTPUT "Error opening file for writing"
+        END PROGRAM
+    END IF
+
+    OPEN inputFile IN READ MODE
+
+    IF inputFile OPENS SUCCESSFULLY THEN
+        READ all characters FROM inputFile
+        STORE characters IN fileContents
+        CLOSE inputFile
+    ELSE
+        OUTPUT "Error opening input file for reversal"
+        END
+    END IF
+
+    REVERSE fileContents
+
+    OPEN outputFile IN WRITE MODE
+
+    IF outputFile OPENS SUCCESSFULLY THEN
+        WRITE fileContents TO outputFile
+        CLOSE outputFile
+        OUTPUT "Reversed file created successfully"
+    ELSE
+        OUTPUT "Error creating reversed output file"
+    END IF
+
+    OUTPUT "Program completed successfully"
+
+END
